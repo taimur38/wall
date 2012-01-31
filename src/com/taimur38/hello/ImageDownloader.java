@@ -1,5 +1,6 @@
 package com.taimur38.hello;
 
+import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -154,9 +155,12 @@ public class ImageDownloader {
             HttpResponse response = client.execute(getRequest);
             final int statusCode = response.getStatusLine().getStatusCode();
             if (statusCode != HttpStatus.SC_OK) {
-                Log.w("ImageDownloader", "Error " + statusCode +
-                        " while retrieving bitmap from " + url);
-                return null;
+                Header[] headers = response.getHeaders("Location");
+                
+                if(headers != null && headers.length != 0){
+                	String newUrl = headers[headers.length - 1].getValue();
+                	return downloadBitmap(newUrl);
+                }
             }
 
             final HttpEntity entity = response.getEntity();

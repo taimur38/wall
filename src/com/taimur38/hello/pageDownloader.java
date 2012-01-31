@@ -6,34 +6,41 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
-import android.os.AsyncTask;
-
-public class pageDownloader extends Thread {
-
-	String url;
-	StringBuilder res;
-	boolean done;
-	public pageDownloader(String nurl, StringBuilder val)
-	{
-		url = nurl;
-		res = val;
-		done = false;
+public class pageDownloader{
+	private String _url;
+	private String _result;
+	
+	public pageDownloader(String url){
+		_url = url;
 	}
 	
-	public void run() {
+	public String sync(){
+		StringBuilder sb = new StringBuilder();
 		try{
-			URL address = new URL(url);
+			URL address = new URL(_url);
 			URLConnection conn = address.openConnection();
 			InputStream is = conn.getInputStream();
 			BufferedReader br = new BufferedReader(new InputStreamReader(is));
 			String s = "";
-			
-			while((s = br.readLine()) != null)
-			 res.append(s);
-			done=true;}
+			while((s=br.readLine()) != null)
+				sb.append(s);
+		} catch(Exception e){}
 		
-		catch(Exception e){
-				String error = e.toString();
-				res = res.append("penis");}
+		return sb.toString();
+		}
+	
+	public String fakeAsync(){
+		Thread t = new Thread(new DownloadTask());
+		t.start();
+		while(t.isAlive()){}
+		
+		return _result;
+	}
+	
+	private class DownloadTask implements Runnable{
+		
+		public void run(){
+			_result = sync();
+		}
 	}
 }

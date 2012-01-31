@@ -17,6 +17,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -33,18 +34,14 @@ public class HelloActivity extends Activity {
         setContentView(R.layout.main);
         
         RelativeLayout layout = (RelativeLayout)this.findViewById(R.id.RelativeLayout1);
-        ImageView test = new ImageView(this);
+        TextView nameLabel = (TextView)this.findViewById(R.id.nameLabel);
+        TextView descLabel = (TextView)this.findViewById(R.id.descLabel);
+        descLabel.setMovementMethod(new ScrollingMovementMethod());
+        
         ImageDownloader downloader = new ImageDownloader();
-        StringBuilder bob = new StringBuilder("");
-        String url = "http://clossit.com/api/User.aspx?id=1&q=Clossit&results=3";
-        pageDownloader wc = new pageDownloader(url, bob);
-        wc.start();
-        
-        
-        //wait to dl the page
-       
-        while(!wc.done){try{Thread.sleep(1000);} catch(Exception e){}}
-        String json = bob.toString();
+        String url = "http://clossit.com/api/User.aspx?id=1&q=Clossit&results=2&page=0";
+        pageDownloader wc = new pageDownloader(url);
+        String json = wc.fakeAsync();
         
         JSONArray clossit;
         try{
@@ -55,12 +52,18 @@ public class HelloActivity extends Activity {
         for(int i = 0; i < clossit.length(); i++)
         {
         	try{
-        	Clothing a = new Clothing(clossit.getString(i));
-        	String tdest = a.Image();
-        	downloader.download(a.Image(), test);
-        	layout.addView(test);}
-        	
-        	catch(Exception e){}
+        		ImageView test = new ImageView(this);
+        		test.setX(i*150);
+        			
+        		Clothing a = new Clothing(clossit.getJSONObject(i));
+        		downloader.download(a.Image(), test);
+        		nameLabel.setText(a.Name());
+        		descLabel.setText(a.Description());
+        		layout.addView(test);}
+        	catch(Exception e){
+        		String el = e.toString();
+        		String lala="";
+        	}
         }
         
     }

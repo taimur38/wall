@@ -5,10 +5,10 @@ import org.json.JSONObject;
 public class Clothing {
 	private JSONObject json;
 	
-	public Clothing(String newJson)
+	public Clothing(JSONObject newJson)
 	{
 		try{
-			json = new JSONObject(newJson);}
+			json = newJson.getJSONObject("clothing");}
 		catch(Exception e){
 			json = null;}
 	}
