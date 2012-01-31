@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Stack;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -48,18 +49,25 @@ public class HelloActivity extends Activity {
         	clossit = new JSONArray(json);}
         catch(Exception e){
         	clossit = null; }
-        	
+        
+        flingyOnClick flingy = new flingyOnClick();
+        
         for(int i = 0; i < clossit.length(); i++)
         {
         	try{
         		ImageView test = new ImageView(this);
-        		test.setX(i*150);
+        		//test.setX(i*150);
+        		
+        		test.setOnClickListener(flingy);
+        		test.setOnTouchListener(flingy.gestureListener);
         			
         		Clothing a = new Clothing(clossit.getJSONObject(i));
+        		
         		downloader.download(a.Image(), test);
         		nameLabel.setText(a.Name());
         		descLabel.setText(a.Description());
         		layout.addView(test);}
+        	
         	catch(Exception e){
         		String el = e.toString();
         		String lala="";

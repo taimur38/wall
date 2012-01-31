@@ -4,11 +4,20 @@ import org.json.JSONObject;
 
 public class ClossitUser {
 	
-	private JSONObject json;
+	protected JSONObject json;
 	
-	public ClossitUser(String email, String pwd)
-	{
-		
+	public ClossitUser(){
+		json = null;
+	}
+	
+	public ClossitUser(JSONObject newJson){
+		json = newJson;
+	}
+	
+	public ClossitUser(String newJson){
+		try{
+			json = new JSONObject(newJson);
+		} catch(Exception e){json = null;}
 	}
 	
 	public String Name(){

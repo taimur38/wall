@@ -8,11 +8,19 @@ public class Clothing {
 	public Clothing(JSONObject newJson)
 	{
 		try{
-			json = newJson.getJSONObject("clothing");}
+			json = newJson.getJSONObject("clothing");
+			Session.addClothingItem(this);}
 		catch(Exception e){
 			json = null;}
 	}
 	
+	public Clothing(String newJson){
+		try{
+			json = new JSONObject(newJson);
+			Session.addClothingItem(this);}
+		
+		catch(Exception e){ json = null; }
+	}
 	public String Name()
 	{
 		try{
@@ -30,12 +38,19 @@ public class Clothing {
 			return null;}
 	}
 	
+	public String ID()
+	{
+		try{
+			return json.getString("id");}
+		catch(Exception e){return "-1";}
+	}
+	
 	public String Image()
 	{
 		try{
 			return json.getString("image");}
 		catch(Exception e){
-			String test = e.toString();
+			String test = e.toString(); //to read message when debugging
 			return "http://upload.wikimedia.org/wikipedia/commons/e/ec/Happy_smiley_face.png";}
 	}
 	
