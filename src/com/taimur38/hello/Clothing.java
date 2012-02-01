@@ -11,6 +11,7 @@ public class Clothing {
 			json = newJson.getJSONObject("clothing");
 			Session.addClothingItem(this);}
 		catch(Exception e){
+			String m = e.toString();
 			json = null;}
 	}
 	
@@ -48,7 +49,7 @@ public class Clothing {
 	public String Image()
 	{
 		try{
-			return json.getString("image");}
+			return "http://clossit.com/api/Thumbnail.aspx?width=300&height=500&src=" + json.getString("image");}
 		catch(Exception e){
 			String test = e.toString(); //to read message when debugging
 			return "http://upload.wikimedia.org/wikipedia/commons/e/ec/Happy_smiley_face.png";}

@@ -20,7 +20,9 @@ public class Session {
 		return _Me;
 	}
 	
-	static HashMap<String, Clothing> addClothingItem(Clothing item){
+	static HashMap<String, Clothing> addClothingItem(Clothing item){ 
+		if(Clothes == null)
+			Clothes = new HashMap<String, Clothing>();
 		Clothes.put(item.ID(), item);
 		return Clothes;
 	}

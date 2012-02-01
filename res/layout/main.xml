@@ -9,23 +9,20 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginBottom="126dp"
+        android:layout_marginBottom="220dp"
         android:text="Large Text"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
+
+
+
     <TextView
         android:id="@+id/descLabel"
         android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_height="200dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginRight="41dp"
-        android:text="Small Text"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="5pt"
-        android:maxLines="8"
-        android:scrollbars="vertical" />
-
-</RelativeLayout>
+        android:text="Small Text" />
+    </RelativeLayout>

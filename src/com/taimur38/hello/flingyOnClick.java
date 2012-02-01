@@ -29,7 +29,7 @@ public class flingyOnClick extends Activity implements OnClickListener{
 		gestureDetector = new GestureDetector(new MyGestureDetector());
 		gestureListener = new View.OnTouchListener() {
 			
-			public boolean onTouch(View v, MotionEvent event) {
+			public boolean onTouch(View v, MotionEvent event) { 
 				return gestureDetector.onTouchEvent(event);
 			}
 		};
