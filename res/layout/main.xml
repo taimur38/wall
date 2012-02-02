@@ -10,7 +10,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="220dp"
-        android:text="Large Text"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 
@@ -23,6 +22,5 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="10dp"
-        android:layout_marginRight="41dp"
-        android:text="Small Text" />
+        android:layout_marginRight="41dp" />
     </RelativeLayout>

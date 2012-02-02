@@ -40,7 +40,7 @@ public class ImageDownloader {
     private static final String LOG_TAG = "ImageDownloader";
 
     public enum Mode { NO_ASYNC_TASK, NO_DOWNLOADED_DRAWABLE, CORRECT }
-    private Mode mode = Mode.CORRECT;
+    private Mode mode = Mode.NO_ASYNC_TASK;
     
     /**
      * Download the specified image from the Internet and binds it to the provided ImageView. The
@@ -146,6 +146,9 @@ public class ImageDownloader {
     Bitmap downloadBitmap(String url) {
         final int IO_BUFFER_SIZE = 4 * 1024;
 
+        Bitmap tempPic;
+        if((tempPic = getBitmapFromCache(url)) != null)
+        	return tempPic;
         // AndroidHttpClient is not allowed to be used from the main thread
         final HttpClient client = (mode == Mode.NO_ASYNC_TASK) ? new DefaultHttpClient() :
             AndroidHttpClient.newInstance("Android");
@@ -159,6 +162,9 @@ public class ImageDownloader {
                 
                 if(headers != null && headers.length != 0){
                 	String newUrl = headers[headers.length - 1].getValue();
+                	Bitmap pic = getBitmapFromCache(newUrl);
+                	if(pic != null)
+                		return pic;
                 	return downloadBitmap(newUrl);
                 }
             }
@@ -168,7 +174,9 @@ public class ImageDownloader {
                 InputStream inputStream = null;
                 try {
                     inputStream = entity.getContent();
-                    return BitmapFactory.decodeStream(new FlushedInputStream(inputStream));
+                    Bitmap pic = BitmapFactory.decodeStream(new FlushedInputStream(inputStream));
+                    addBitmapToCache(url, pic);
+                    return pic;
                 } finally {
                     if (inputStream != null) {
                         inputStream.close();
@@ -291,7 +299,7 @@ public class ImageDownloader {
      * Garbage Collector.
      */
     
-    private static final int HARD_CACHE_CAPACITY = 10;
+    private static final int HARD_CACHE_CAPACITY = 100;
     private static final int DELAY_BEFORE_PURGE = 10 * 1000; // in milliseconds
 
     // Hard cache, with a fixed maximum capacity and a life duration

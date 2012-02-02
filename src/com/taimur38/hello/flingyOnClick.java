@@ -19,7 +19,7 @@ public class flingyOnClick extends Activity implements OnClickListener{
 	private static final int MIN_VELOCITY = 200;
 	
 	public void onClick(View v) {
-		
+		Toast.makeText(v.getContext(), "lala", Toast.LENGTH_SHORT).show();
 		
 	}
 	
@@ -38,21 +38,16 @@ public class flingyOnClick extends Activity implements OnClickListener{
 
 	class MyGestureDetector extends SimpleOnGestureListener {
 	
-		Stack<View> offScreen = new Stack<View>();
-	
 		@Override
 		public boolean onFling(MotionEvent e1,MotionEvent e2, float velocityX, float velocityY){
 			if(e1.getX() - e2.getX() > SWIPE_MIN && Math.abs(velocityX) > MIN_VELOCITY)
 			{
-				Toast.makeText(flingyOnClick.this, "left-swipe", Toast.LENGTH_SHORT).show();
-				//if(offScreen != null)
-					//flingOnStack(offScreen.pop()); 
+				Toast.makeText(getApplicationContext(), "left-swipe", Toast.LENGTH_SHORT).show();
 			}
 			
 			if(e2.getX() - e1.getX() > SWIPE_MIN && Math.abs(velocityX) > MIN_VELOCITY)
 			{
-				Toast.makeText(flingyOnClick.this, "right-swipe", Toast.LENGTH_SHORT).show();
-				//flingOffStack(offScreen.push(getCurrentFocus())); //TODO: does this get the right view?
+				Toast.makeText(getApplicationContext(), "right-swipe", Toast.LENGTH_SHORT).show();
 			}
 			
 			return false;

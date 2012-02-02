@@ -34,46 +34,99 @@ public class HelloActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        RelativeLayout layout = (RelativeLayout)this.findViewById(R.id.RelativeLayout1);
-        TextView nameLabel = (TextView)this.findViewById(R.id.nameLabel);
-        TextView descLabel = (TextView)this.findViewById(R.id.descLabel);
-        descLabel.setMovementMethod(new ScrollingMovementMethod());
-        
-        ImageDownloader downloader = new ImageDownloader();
-        String url = "http://clossit.com/api/User.aspx?id=1&q=Clossit&results=2&page=0";
+        String url = "http://clossit.com/api/User.aspx?id=1&q=Clossit&results=24&page=0";
         pageDownloader wc = new pageDownloader(url);
         String json = wc.fakeAsync();
         
         JSONArray clossit;
         try{
         	clossit = new JSONArray(json);}
+        
         catch(Exception e){
         	clossit = null; }
         
-        flingyOnClick flingy = new flingyOnClick();
+        
         
         for(int i = 0; i < clossit.length(); i++)
         {
         	try{
-        		ImageView test = new ImageView(this);
-        		//test.setX(i*150);
-        		
-        		test.setOnClickListener(flingy);
-        		test.setOnTouchListener(flingy.gestureListener);
-        			
         		Clothing a = new Clothing(clossit.getJSONObject(i));
+        		clothingListHolder.addToList(a.ID());
         		
-        		downloader.download(a.Image(), test);
-        		nameLabel.setText(a.Name());
-        		descLabel.setText(a.Description());
-        		layout.addView(test);}
-        	
-        	catch(Exception e){
+        		
+        	}catch(Exception e){
         		String el = e.toString();
         		String lala="";
         	}
         }
         
+        buildPage();
+        
+    }
+    
+    public void buildPage()
+    {
+    	RelativeLayout layout = (RelativeLayout)this.findViewById(R.id.RelativeLayout1);
+        TextView nameLabel = (TextView)this.findViewById(R.id.nameLabel);
+        TextView descLabel = (TextView)this.findViewById(R.id.descLabel);
+        descLabel.setMovementMethod(new ScrollingMovementMethod());
+        
+        ImageDownloader downloader = new ImageDownloader();
+        
+        ImageView test = new ImageView(this);
+        test.setId(1337);
+        flingyOnClick flingy = new flingyOnClick();
+        
+		layout.setOnClickListener(flingy);
+		layout.setOnTouchListener(flingy.gestureListener);
+		
+		Clothing current = clothingListHolder.nextCloth();
+		downloader.download(current.Image(), test);
+		nameLabel.setText(current.Name());
+		descLabel.setText(current.Description());
+		layout.addView(test);
+		
+		//Buttons are temporary - don't judge me
+		Button nextButton = new Button(this);
+        nextButton.setX(310);
+        nextButton.setText("next");
+        nextButton.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				Clothing next = clothingListHolder.nextCloth();
+				ImageDownloader downloader = new ImageDownloader();
+				downloader.download(next.Image(), (ImageView)findViewById(1337));
+				
+				 TextView nameLabel = (TextView)findViewById(R.id.nameLabel);
+			     TextView descLabel = (TextView)findViewById(R.id.descLabel);
+			     
+			     nameLabel.setText(next.Name());
+			     descLabel.setText(next.Description());
+			}
+		});
+        layout.addView(nextButton);
+        
+        Button prevButton = new Button(this);
+        prevButton.setX(310);
+        prevButton.setY(100);
+        prevButton.setText("prev");
+        prevButton.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				Clothing prev = clothingListHolder.prevCloth();
+				ImageDownloader downloader = new ImageDownloader();
+				downloader.download(prev.Image(), (ImageView)findViewById(1337));
+				
+				 TextView nameLabel = (TextView)findViewById(R.id.nameLabel);
+			     TextView descLabel = (TextView)findViewById(R.id.descLabel);
+			     
+			     nameLabel.setText(prev.Name());
+			     descLabel.setText(prev.Description());
+			}
+		});
+        layout.addView(prevButton);
+		
+		
     }
     
 }
