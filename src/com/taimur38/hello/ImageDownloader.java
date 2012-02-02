@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.FilterInputStream;
 import java.lang.ref.WeakReference;
+import java.util.HashMap;
 
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -20,36 +21,38 @@ import android.util.Log;
 import android.widget.ImageView;
 
 
-/**
- * This helper class download images from the Internet and binds those with the provided ImageView.
- *
- * <p>It requires the INTERNET permission, which should be added to your application's manifest
- * file.</p>
- *
- * A local cache of downloaded images is maintained internally to improve performance.
- */
 public class ImageDownloader {
     private static final String LOG_TAG = "ImageDownloader";
+    private static HashMap<String, Bitmap> Images = null;
     
-    public void download(String url, ImageView imageView) {
+    public static void download(String url, ImageView imageView) {
         
-    	Bitmap bitmap = Session.getImage(url);
+    	Bitmap bitmap = getImage(url);
         
-        if (bitmap == null) 
-            forceDownload(url, imageView);
-         else 
+        if (bitmap == null){
+        	BitmapDownloaderTask task = new BitmapDownloaderTask(imageView);
+        	task.execute(url); 
+        }else 
         	 imageView.setImageBitmap(bitmap);
         
     }
     
-    private void forceDownload(String url, ImageView imageView) 
-    {
-    	BitmapDownloaderTask task = new BitmapDownloaderTask(imageView);
-    	
-    	task.execute(url); 
-    }
-    
-    class BitmapDownloaderTask extends AsyncTask<String, Void, Bitmap> 
+    static void cacheImage(String url, Bitmap bmp)
+	{
+		if(Images == null)
+			Images = new HashMap<String, Bitmap>();
+		Images.put(url, bmp);
+	}
+	
+
+	static Bitmap getImage(String url)
+	{
+		if(Images == null)
+			Images = new HashMap<String, Bitmap>();
+		return Images.get(url);
+	}
+
+    static class BitmapDownloaderTask extends AsyncTask<String, Void, Bitmap> 
     {
         private String url;
         private final WeakReference<ImageView> imageViewReference;
@@ -74,7 +77,6 @@ public class ImageDownloader {
 
             if (imageViewReference != null) {
                 ImageView imageView = imageViewReference.get();
-                //BitmapDownloaderTask bitmapDownloaderTask = new BitmapDownloaderTask(imageView);
             
                 imageView.setImageBitmap(bitmap);
                 
@@ -82,10 +84,8 @@ public class ImageDownloader {
         }
     }
     
-    Bitmap downloadBitmap(String url) {
-        final int IO_BUFFER_SIZE = 4 * 1024;
-        
-        Bitmap tmp = Session.getImage(url);
+    static Bitmap downloadBitmap(String url) {
+        Bitmap tmp = getImage(url);
         if(tmp != null)
         	return tmp;
         
@@ -111,7 +111,7 @@ public class ImageDownloader {
                 try {
                     inputStream = entity.getContent();
                     Bitmap pic = BitmapFactory.decodeStream(new FlushedInputStream(inputStream));
-                    Session.cacheImage(url, pic);
+                    cacheImage(url, pic);
                     return pic;
                 } finally {
                     if (inputStream != null) {
@@ -120,12 +120,6 @@ public class ImageDownloader {
                     entity.consumeContent();
                 }
             }
-        } catch (IOException e) {
-            getRequest.abort();
-            Log.w(LOG_TAG, "I/O error while retrieving bitmap from " + url, e);
-        } catch (IllegalStateException e) {
-            getRequest.abort();
-            Log.w(LOG_TAG, "Incorrect URL: " + url);
         } catch (Exception e) {
             getRequest.abort();
             Log.w(LOG_TAG, "Error while retrieving bitmap from " + url, e);

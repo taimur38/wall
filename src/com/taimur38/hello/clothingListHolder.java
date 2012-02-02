@@ -2,12 +2,12 @@ package com.taimur38.hello;
 
 import java.util.ArrayList;
 
-public class clothingListHolder {
+public class ClothingListHolder {
 
 	public static ArrayList<String> list = null;
 	private static int position = -1;
 	
-	public clothingListHolder()
+	public ClothingListHolder()
 	{
 		list = new ArrayList<String>();
 	}
@@ -23,6 +23,11 @@ public class clothingListHolder {
 	{
 		if(++position >= list.size())
 			position = 0;
+		return Session.getClothingItem(list.get(position));
+	}
+	
+	public static Clothing currentCloth()
+	{
 		return Session.getClothingItem(list.get(position));
 	}
 	

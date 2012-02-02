@@ -9,9 +9,7 @@ public class Me extends ClossitUser{
 	public Me(String email, String pwd) {
 			apiKey = Session.getMD5(email + ":" + pwd);
 			
-			pageDownloader dl = new pageDownloader("http://clossit.com/api/User.aspx?q=basic&key=" + apiKey);
-			
-			try { json = new JSONObject(dl.fakeAsync());}
+			try { json = new JSONObject(PageDownloader.fakeAsync("http://clossit.com/api/User.aspx?q=basic&key=" + apiKey));}
 			catch(Exception e){ json = null;}
 		}
 	

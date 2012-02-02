@@ -21,26 +21,15 @@ public class ClossitUser {
 	}
 	
 	public String Name(){
-		try{
-			return json.getString("name");
-		}
-		catch(Exception e){
-			return "no";
-		}
+		return json.optString("name", "Happysmileyface");
 	}
 	
 	public String Id(){
-		try{
-			return json.getString("id");}
-		
-		catch(Exception e){ return "-1";}	
+		return json.optString("id", "-1");
 	}
 	
 	public String Image(){
-		try{
-			return json.getString("avatar");}
-		
-		catch(Exception e){ return null; }
+		return json.optString("images", "lala");
 	}
 
 }

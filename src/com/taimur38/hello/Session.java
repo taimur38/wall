@@ -1,21 +1,15 @@
 package com.taimur38.hello;
 
+import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.util.HashMap;
 
-import android.graphics.Bitmap;
 
 public class Session {
 	
 	static Me _Me = null;
 	static HashMap<String, Clothing> Clothes = null;
-	static HashMap<String, Bitmap> Images = null;
 	
-	public Session()
-	{
-		
-	}
-
 	static Me getUser()
 	{
 		if(_Me == null)
@@ -36,22 +30,10 @@ public class Session {
 	
 	static String getMD5(String msg){
 		try {
-			return  MessageDigest.getInstance("MD5").toString();}
+			MessageDigest m = MessageDigest.getInstance("MD5");
+			m.update(msg.getBytes(),0,msg.length());
+			return new BigInteger(1,m.digest()).toString(16);}
 		catch(Exception e){return null;}
-	}
-	
-	static void cacheImage(String url, Bitmap bmp)
-	{
-		if(Images == null)
-			Images = new HashMap<String, Bitmap>();
-		Images.put(url, bmp);
-	}
-	
-	static Bitmap getImage(String url)
-	{
-		if(Images == null)
-			Images = new HashMap<String, Bitmap>();
-		return Images.get(url);
 	}
 
 }

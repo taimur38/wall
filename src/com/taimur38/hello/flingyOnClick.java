@@ -1,7 +1,5 @@
 package com.taimur38.hello;
 
-import java.util.Stack;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.GestureDetector;
@@ -11,7 +9,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
-public class flingyOnClick extends Activity implements OnClickListener{
+public class FlingyOnClick extends Activity implements OnClickListener{
 	
 	private GestureDetector gestureDetector;
 	View.OnTouchListener gestureListener;

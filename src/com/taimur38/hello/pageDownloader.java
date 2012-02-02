@@ -6,15 +6,15 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class pageDownloader{
-	private String _url;
-	private String _result;
+public class PageDownloader{
+	private static String _url;
+	private static String _result;
 	
-	public pageDownloader(String url){
+	public PageDownloader(String url){
 		_url = url;
 	}
 	
-	public String sync(){
+	public static String sync(){
 		StringBuilder sb = new StringBuilder();
 		try{
 			URL address = new URL(_url);
@@ -29,7 +29,8 @@ public class pageDownloader{
 		return sb.toString();
 		}
 	
-	public String fakeAsync(){
+	public static String fakeAsync(String url){
+		_url = url;
 		Thread t = new Thread(new DownloadTask());
 		t.start();
 		while(t.isAlive()){}
@@ -37,7 +38,7 @@ public class pageDownloader{
 		return _result;
 	}
 	
-	private class DownloadTask implements Runnable{
+	private static class DownloadTask implements Runnable{
 		
 		public void run(){
 			_result = sync();
