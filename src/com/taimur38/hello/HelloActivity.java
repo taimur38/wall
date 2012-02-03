@@ -28,7 +28,6 @@ public class HelloActivity extends Activity {
     protected void onResume()
     {
     	super.onResume();
-    	
     	download();
     }
     
