@@ -16,7 +16,7 @@ import android.widget.TextView;
 public class HelloActivity extends Activity {
     /** Called when the activity is first created. */
 	final Context me = this;
-	private boolean hasResumed = false;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,13 +47,14 @@ public class HelloActivity extends Activity {
         for(int i = 0; i < clossit.length(); i++)
         {
         	try{
-        		Clothing a = new Clothing(clossit.getJSONObject(i));
-        		ClothingListHolder.addToList(a.ID());}
+        		ClothingModel a = new ClothingModel(clossit.getJSONObject(i));
+        		ClothingListHolder.addToList(a.clothingID); //change to clothingmodel holder
+        		ImageDownloader.download(Session.getClothingItem(a.clothingID).Image(), null);} //download images in background so they're cached 
         	catch(Exception e){}
         }
         buildPage();
     }
-    public void buildPage()
+    public void buildPage() //init with clothing model
     {
     	RelativeLayout layout = (RelativeLayout)this.findViewById(R.id.RelativeLayout1);
         TextView nameLabel = (TextView)this.findViewById(R.id.nameLabel);

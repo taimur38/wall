@@ -12,11 +12,13 @@ public class ClossitUser {
 	
 	public ClossitUser(JSONObject newJson){
 		json = newJson;
+		Session.addClossitUser(this);
 	}
 	
 	public ClossitUser(String newJson){
 		try{
 			json = new JSONObject(newJson);
+			Session.addClossitUser(this);
 		} catch(Exception e){json = null;}
 	}
 	

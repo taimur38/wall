@@ -77,7 +77,6 @@ public class ImageDownloader {
 
             if (imageViewReference != null) {
                 ImageView imageView = imageViewReference.get();
-            
                 imageView.setImageBitmap(bitmap);
                 
             }

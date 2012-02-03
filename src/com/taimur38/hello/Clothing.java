@@ -8,7 +8,7 @@ public class Clothing {
 	public Clothing(JSONObject newJson)
 	{
 		try{
-			json = newJson.getJSONObject("clothing");
+			json = newJson;
 			Session.addClothingItem(this);}
 		catch(Exception e){
 			json = null;}

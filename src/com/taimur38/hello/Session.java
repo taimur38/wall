@@ -4,13 +4,12 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.util.HashMap;
 
-import org.json.JSONObject;
-
 
 public class Session {
 	
 	static Me _Me = null;
 	static HashMap<String, Clothing> Clothes = null;
+	static HashMap<String, ClossitUser> Users = null;
 	
 	static Me getUser()
 	{
@@ -19,15 +18,26 @@ public class Session {
 		return _Me;
 	}
 	
-	static HashMap<String, Clothing> addClothingItem(Clothing item){ 
+	static void addClothingItem(Clothing item){ 
 		if(Clothes == null)
 			Clothes = new HashMap<String, Clothing>();
 		Clothes.put(item.ID(), item);
-		return Clothes;
 	}
 	
 	static Clothing getClothingItem(String id){
 		return Clothes.get(id);
+	}
+	
+	static void addClossitUser(ClossitUser user){
+		if(Users == null)
+			Users = new HashMap<String, ClossitUser>();
+		Users.put(user.Id(), user);
+	}
+	
+	static ClossitUser getClossitUser(String id){
+		if(Users == null)
+			Users = new HashMap<String, ClossitUser>();
+		return Users.get(id);
 	}
 	
 	static String getMD5(String msg){
