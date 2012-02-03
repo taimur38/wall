@@ -37,4 +37,11 @@ public class ClothingListHolder {
 			position = list.size()-1;
 		return Session.getClothingItem(list.get(position));
 	}
+	
+	public static void clear()
+	{
+		if(list != null)
+			list.clear();
+		position = -1;
+	}
 }

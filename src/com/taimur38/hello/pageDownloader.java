@@ -3,8 +3,10 @@ package com.taimur38.hello;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+
 import java.net.URL;
 import java.net.URLConnection;
+
 
 public class PageDownloader{
 	private static String _url;
@@ -17,6 +19,7 @@ public class PageDownloader{
 	public static String sync(){
 		StringBuilder sb = new StringBuilder();
 		try{
+			_url = _url.replace(" ", "%20");
 			URL address = new URL(_url);
 			URLConnection conn = address.openConnection();
 			InputStream is = conn.getInputStream();
@@ -31,6 +34,7 @@ public class PageDownloader{
 	
 	public static String fakeAsync(String url){
 		_url = url;
+		
 		Thread t = new Thread(new DownloadTask());
 		t.start();
 		while(t.isAlive()){}

@@ -3,6 +3,7 @@ package com.taimur38.hello;
 import org.json.JSONArray;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
@@ -14,13 +15,26 @@ import android.widget.TextView;
 
 public class HelloActivity extends Activity {
     /** Called when the activity is first created. */
+	final Context me = this;
+	private boolean hasResumed = false;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main);
-        
-        String url = "http://clossit.com/api/User.aspx?id=1&q=Clossit&results=24&page=0";
+      
+    }
+    @Override
+    protected void onResume()
+    {
+    	super.onResume();
+    	
+    	download();
+    }
+    
+    public void download()
+    {
+        String url = super.getIntent().getStringExtra("url");
         String json = PageDownloader.fakeAsync(url);
         
         JSONArray clossit;
@@ -39,7 +53,6 @@ public class HelloActivity extends Activity {
         }
         buildPage();
     }
-    
     public void buildPage()
     {
     	RelativeLayout layout = (RelativeLayout)this.findViewById(R.id.RelativeLayout1);
@@ -70,11 +83,9 @@ public class HelloActivity extends Activity {
 		addToClossitButton.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
-				String url = "http://www.clossit.com/api/User.aspx?q=wear&clothing=" 
-						+ ClothingListHolder.currentCloth().ID() + "&key=" + Session.getUser().getAPIKey();
-				String result = PageDownloader.fakeAsync(url);
+				boolean res = Session.addToClossit(ClothingListHolder.currentCloth());
 				Button adder = ((Button)findViewById(555));
-				if(result.toLowerCase().contains("true"))
+				if(res)
 					adder.setText("Remove from Clossit");
 				else
 					adder.setText("Add To Clossit");

@@ -26,7 +26,7 @@ public class ImageDownloader {
     private static HashMap<String, Bitmap> Images = null;
     
     public static void download(String url, ImageView imageView) {
-        
+        url = url.replace(" ", "%20");
     	Bitmap bitmap = getImage(url);
         
         if (bitmap == null){

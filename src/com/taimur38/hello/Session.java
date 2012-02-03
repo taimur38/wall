@@ -4,6 +4,8 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.util.HashMap;
 
+import org.json.JSONObject;
+
 
 public class Session {
 	
@@ -34,6 +36,17 @@ public class Session {
 			m.update(msg.getBytes(),0,msg.length());
 			return new BigInteger(1,m.digest()).toString(16);}
 		catch(Exception e){return null;}
+	}
+	
+	static boolean addToClossit(Clothing item)
+	{
+		String url = "http://www.clossit.com/api/User.aspx?q=wear&clothing=" 
+				+ ClothingListHolder.currentCloth().ID() + "&key=" + Session.getUser().getAPIKey();
+		String result = PageDownloader.fakeAsync(url);
+		if(result.contains("true"))
+			return true;
+		else
+			return false;
 	}
 
 }
