@@ -33,7 +33,8 @@ public class ImageDownloader {
         	BitmapDownloaderTask task = new BitmapDownloaderTask(imageView);
         	task.execute(url); 
         }else 
-        	 imageView.setImageBitmap(bitmap);
+        	if(imageView != null)
+        		imageView.setImageBitmap(bitmap);
         
     }
     
@@ -59,7 +60,10 @@ public class ImageDownloader {
 
         public BitmapDownloaderTask(ImageView imageView) 
         {
-            imageViewReference = new WeakReference<ImageView>(imageView);
+        	if(imageView != null)
+        		imageViewReference = new WeakReference<ImageView>(imageView);
+        	else
+        		imageViewReference = null;
         }
 
        

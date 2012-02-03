@@ -51,7 +51,7 @@ public class Session {
 	static boolean addToClossit(Clothing item)
 	{
 		String url = "http://www.clossit.com/api/User.aspx?q=wear&clothing=" 
-				+ ClothingListHolder.currentCloth().ID() + "&key=" + Session.getUser().getAPIKey();
+				+ ClothingListHolder.current().getClothing().ID() + "&key=" + Session.getUser().getAPIKey();
 		String result = PageDownloader.fakeAsync(url);
 		if(result.contains("true"))
 			return true;

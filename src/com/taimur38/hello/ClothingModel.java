@@ -11,9 +11,24 @@ public class ClothingModel {
 	{
 		Clothing clothing = new Clothing(json.optJSONObject("clothing"));
 		clothingID = clothing.ID();
-		ClossitUser user = new ClossitUser(json.optJSONObject("owner"));
-		userID = user.Id();
-		wearing = json.optBoolean("wearing");
+		ClossitUser user = json.optJSONObject("owner") != null ? new ClossitUser(json.optJSONObject("owner")) : null;
+		userID = user == null ? "1" : user.Id(); //for now,  default is owner = Clossit team
+		wearing = json.optString("wearing").contains("true");
+	}
+	
+	public Clothing getClothing()
+	{
+		return Session.getClothingItem(clothingID);
+	}
+	
+	public ClossitUser getOwner()
+	{
+		return Session.getClossitUser(userID);
+	}
+	
+	public boolean isWearing()
+	{
+		return wearing;
 	}
 
 }

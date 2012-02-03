@@ -28,6 +28,7 @@ public class HelloActivity extends Activity {
     protected void onResume()
     {
     	super.onResume();
+    	ClothingListHolder.clear();
     	download();
     }
     
@@ -47,8 +48,8 @@ public class HelloActivity extends Activity {
         {
         	try{
         		ClothingModel a = new ClothingModel(clossit.getJSONObject(i));
-        		ClothingListHolder.addToList(a.clothingID); //change to clothingmodel holder
-        		ImageDownloader.download(Session.getClothingItem(a.clothingID).Image(), null);} //download images in background so they're cached 
+        		ClothingListHolder.addToList(a); //change to clothingmodel holder
+        		if(i < 5) ImageDownloader.download(Session.getClothingItem(a.clothingID).Image(), null);} //cache first 5 images 
         	catch(Exception e){}
         }
         buildPage();
@@ -69,28 +70,33 @@ public class HelloActivity extends Activity {
 		layout.setOnClickListener(flingy);
 		layout.setOnTouchListener(flingy.gestureListener);
 		
-		Clothing current = ClothingListHolder.nextCloth();
-		ImageDownloader.download(current.Image(), test);
-		nameLabel.setText(current.Name());
-		descLabel.setText(current.Description());
+		ClothingModel current = ClothingListHolder.next();
+		ImageDownloader.download(current.getClothing().Image(), test);
+		nameLabel.setText(current.getClothing().Name());
+		descLabel.setText(current.getClothing().Description());
 		layout.addView(test);
 		
 		Button addToClossitButton = new Button(this);
 		addToClossitButton.setX(320);
 		addToClossitButton.setY(425);
-		addToClossitButton.setText("Add To Clossit");
+		if(current.isWearing())
+			addToClossitButton.setText("Remove from Clossit");
+		else
+			addToClossitButton.setText("Add to Clossit");
+		
 		addToClossitButton.setId(555);
 		addToClossitButton.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
-				boolean res = Session.addToClossit(ClothingListHolder.currentCloth());
 				Button adder = ((Button)findViewById(555));
+				
+				boolean res = Session.addToClossit(ClothingListHolder.current().getClothing());
 				if(res)
 					adder.setText("Remove from Clossit");
 				else
-					adder.setText("Add To Clossit");
-			}
-		});
+					adder.setText("Add To Clossit");}});
+		
+		
 		layout.addView(addToClossitButton);
 
 		//Buttons are temporary - don't judge me
@@ -100,14 +106,14 @@ public class HelloActivity extends Activity {
         nextButton.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
-				Clothing next = ClothingListHolder.nextCloth();
-				ImageDownloader.download(next.Image(), (ImageView)findViewById(1337));
+				ClothingModel next = ClothingListHolder.next();
+				ImageDownloader.download(next.getClothing().Image(), (ImageView)findViewById(1337));
 				
 				 TextView nameLabel = (TextView)findViewById(R.id.nameLabel);
 			     TextView descLabel = (TextView)findViewById(R.id.descLabel);
 			     
-			     nameLabel.setText(next.Name());
-			     descLabel.setText(next.Description());
+			     nameLabel.setText(next.getClothing().Name());
+			     descLabel.setText(next.getClothing().Description());
 			}
 		});
         layout.addView(nextButton);
@@ -119,14 +125,14 @@ public class HelloActivity extends Activity {
         prevButton.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
-				Clothing prev = ClothingListHolder.prevCloth();
-				ImageDownloader.download(prev.Image(), (ImageView)findViewById(1337));
+				ClothingModel prev = ClothingListHolder.previous();
+				ImageDownloader.download(prev.getClothing().Image(), (ImageView)findViewById(1337));
 				
 				 TextView nameLabel = (TextView)findViewById(R.id.nameLabel);
 			     TextView descLabel = (TextView)findViewById(R.id.descLabel);
 			     
-			     nameLabel.setText(prev.Name());
-			     descLabel.setText(prev.Description());
+			     nameLabel.setText(prev.getClothing().Name());
+			     descLabel.setText(prev.getClothing().Description());
 			}
 		});
         layout.addView(prevButton);
