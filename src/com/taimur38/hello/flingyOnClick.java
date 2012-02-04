@@ -17,7 +17,7 @@ public class FlingyOnClick extends Activity implements OnClickListener{
 	private static final int MIN_VELOCITY = 200;
 	
 	public void onClick(View v) {
-		Toast.makeText(v.getContext(), "lala", Toast.LENGTH_SHORT).show();
+		
 		
 	}
 	
