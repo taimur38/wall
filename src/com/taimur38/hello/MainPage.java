@@ -21,7 +21,7 @@ public class MainPage extends Activity {
 			
 			public void onClick(View v) {
 				Intent passer = new Intent(getApplicationContext(), com.taimur38.hello.HelloActivity.class);
-				passer.putExtra("url", "http://clossit.com/api/User.aspx?id=1&q=Clossit&results=24&page=0");
+				passer.putExtra("url", "http://clossit.com/api/User.aspx?id=1&q=Clossit&results=24&page=0&key=" + Session.getUser().getAPIKey());
 						
 				startActivity(passer);}});
 		

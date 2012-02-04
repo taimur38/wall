@@ -4,11 +4,13 @@ import org.json.JSONArray;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -22,7 +24,7 @@ public class HelloActivity extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main);
-      
+        
     }
     @Override
     protected void onResume()
@@ -76,25 +78,26 @@ public class HelloActivity extends Activity {
 		descLabel.setText(current.getClothing().Description());
 		layout.addView(test);
 		
-		Button addToClossitButton = new Button(this);
+		ImageButton addToClossitButton = new ImageButton(this);
 		addToClossitButton.setX(320);
 		addToClossitButton.setY(425);
+		addToClossitButton.setBackgroundColor(Color.TRANSPARENT);
 		if(current.isWearing())
-			addToClossitButton.setText("Remove from Clossit");
+			addToClossitButton.setImageResource(R.drawable.unfollow);
 		else
-			addToClossitButton.setText("Add to Clossit");
+			addToClossitButton.setImageResource(R.drawable.follow);
 		
 		addToClossitButton.setId(555);
 		addToClossitButton.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
-				Button adder = ((Button)findViewById(555));
+				ImageButton adder = ((ImageButton)findViewById(555));
 				
-				boolean res = Session.addToClossit(ClothingListHolder.current().getClothing());
+				boolean res = Session.addToClossit();
 				if(res)
-					adder.setText("Remove from Clossit");
+					adder.setImageResource(R.drawable.unfollow);
 				else
-					adder.setText("Add To Clossit");}});
+					adder.setImageResource(R.drawable.follow);}});
 		
 		
 		layout.addView(addToClossitButton);
@@ -111,9 +114,14 @@ public class HelloActivity extends Activity {
 				
 				 TextView nameLabel = (TextView)findViewById(R.id.nameLabel);
 			     TextView descLabel = (TextView)findViewById(R.id.descLabel);
+			     ImageButton adderButton = (ImageButton)findViewById(555);
 			     
 			     nameLabel.setText(next.getClothing().Name());
 			     descLabel.setText(next.getClothing().Description());
+			     if(next.isWearing())
+			    	 adderButton.setImageResource(R.drawable.unfollow);
+			     else
+			    	 adderButton.setImageResource(R.drawable.follow);
 			}
 		});
         layout.addView(nextButton);
@@ -130,9 +138,14 @@ public class HelloActivity extends Activity {
 				
 				 TextView nameLabel = (TextView)findViewById(R.id.nameLabel);
 			     TextView descLabel = (TextView)findViewById(R.id.descLabel);
+			     ImageButton adderButton = (ImageButton)findViewById(555);
 			     
 			     nameLabel.setText(prev.getClothing().Name());
 			     descLabel.setText(prev.getClothing().Description());
+			     if(prev.isWearing())
+			    	 adderButton.setImageResource(R.drawable.unfollow);
+			     else
+			    	 adderButton.setImageResource(R.drawable.follow);
 			}
 		});
         layout.addView(prevButton);

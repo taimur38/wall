@@ -50,7 +50,8 @@ public class ImageDownloader {
 	{
 		if(Images == null)
 			Images = new HashMap<String, Bitmap>();
-		return Images.get(url);
+		synchronized(Images){
+			return Images.get(url);}
 	}
 
     static class BitmapDownloaderTask extends AsyncTask<String, Void, Bitmap> 
