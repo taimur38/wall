@@ -51,7 +51,7 @@ public class HelloActivity extends Activity {
         	try{
         		ClothingModel a = new ClothingModel(clossit.getJSONObject(i));
         		ClothingListHolder.addToList(a); //change to clothingmodel holder
-        		if(i < 5) ImageDownloader.download(Session.getClothingItem(a.clothingID).Image(), null);} //cache first 5 images 
+        		if(i == 1) ImageDownloader.download(Session.getClothingItem(a.clothingID).Image(), null);} //cache first image
         	catch(Exception e){}
         }
         buildPage();
@@ -65,12 +65,13 @@ public class HelloActivity extends Activity {
         
         ImageView test = new ImageView(this);
         test.setId(1337);
-        test.setX(10);
-        test.setY(10);
+        test.setX(20);
+        test.setY(110);
+       
         FlingyOnClick flingy = new FlingyOnClick();
         
 		layout.setOnClickListener(flingy);
-		layout.setOnTouchListener(flingy.gestureListener);
+		layout.setOnTouchListener(flingy.gestureListener);		
 		
 		ClothingModel current = ClothingListHolder.next();
 		ImageDownloader.download(current.getClothing().Image(), test);
@@ -78,9 +79,13 @@ public class HelloActivity extends Activity {
 		descLabel.setText(current.getClothing().Description());
 		layout.addView(test);
 		
+		//start caching next 5 images
+		for(int i = ClothingListHolder.getPosition(); i < 5; i++)
+			ImageDownloader.download(ClothingListHolder.index(i).getClothing().Image(), null);
+		
 		ImageButton addToClossitButton = new ImageButton(this);
-		addToClossitButton.setX(320);
-		addToClossitButton.setY(425);
+		addToClossitButton.setX(600);
+		addToClossitButton.setY(555);
 		addToClossitButton.setBackgroundColor(Color.TRANSPARENT);
 		if(current.isWearing())
 			addToClossitButton.setImageResource(R.drawable.unfollow);
@@ -104,7 +109,8 @@ public class HelloActivity extends Activity {
 
 		//Buttons are temporary - don't judge me
 		Button nextButton = new Button(this);
-        nextButton.setX(310);
+        nextButton.setX(330);
+        nextButton.setY(100);
         nextButton.setText("next");
         nextButton.setOnClickListener(new View.OnClickListener() {
 			
@@ -127,8 +133,8 @@ public class HelloActivity extends Activity {
         layout.addView(nextButton);
         
         Button prevButton = new Button(this);
-        prevButton.setX(310);
-        prevButton.setY(100);
+        prevButton.setX(330);
+        prevButton.setY(195);
         prevButton.setText("prev");
         prevButton.setOnClickListener(new View.OnClickListener() {
 			

@@ -1,46 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/gridlayout"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:columnCount="7" >
+    android:layout_height="match_parent" >
+    
+    <RelativeLayout 
+    	android:layout_width="match_parent"
+    	android:layout_height="50dp"
+    	android:background="@drawable/blueheader">
+    	<ImageView 
+        	android:src="@drawable/clossitlogo_web"
+        	android:layout_width="wrap_content"
+        	android:layout_height="match_parent"
+        	android:layout_alignParentLeft="true"
+        	android:paddingLeft="5dp"
+        	android:contentDescription="@string/app_name"
+        	android:layout_alignParentBottom="true"> 
+    	</ImageView>
+    	
+    	<SearchView
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:layout_marginRight="3dp"
+    	    android:layout_marginLeft="170dp"
+    	    android:layout_marginTop="2dp"/>
+    </RelativeLayout>
 
     <ImageButton
         android:id="@+id/imageButton1"
-        android:layout_width="125dp"
+        android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_column="1"
-        android:layout_row="1"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="60dp"
+        android:padding="3dp"
+        android:cropToPadding="true"
         android:contentDescription="@string/app_name"
         android:src="@drawable/logo" />
+    <TextView
+        android:layout_below="@+id/imageButton1"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="Clossit"
+        android:layout_alignRight="@+id/imageButton1">
+        
+    </TextView>
+
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_below="@+id/imageButton1"
+        android:layout_marginTop="30dp"
+        android:layout_alignLeft="@+id/imageButton1"
+        android:padding="10dp"
+        android:cropToPadding="true"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/dress" />
+     <TextView
+        android:layout_below="@+id/imageButton4"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="Dresses"
+        android:layout_alignRight="@+id/imageButton4">
+        
+    </TextView>
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="30dp"
+      	android:layout_below="@+id/imageButton2"
+      	android:layout_alignLeft="@+id/imageButton2"
+      	android:padding="10dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/t_shirt" />
+    
+     <TextView
+        android:layout_below="@+id/imageButton3"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="T-Shirts"
+        android:layout_alignRight="@+id/imageButton3">
+        
+    </TextView>
 
     <ImageButton
         android:id="@+id/imageButton2"
-        android:layout_width="125dp"
+        android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_column="2"
-        android:layout_columnSpan="4"
-        android:layout_row="1"
+        android:layout_toRightOf="@+id/imageButton1"
+        android:layout_alignTop="@+id/imageButton1"
+        android:padding="10dp"
         android:contentDescription="@string/hello"
         android:src="@drawable/shelf" />
+    
+     <TextView
+        android:layout_below="@+id/imageButton2"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="Suggestions"
+        android:layout_alignRight="@+id/imageButton2"/>
+     
+     <ImageButton
+        android:id="@+id/imageButton5"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_below="@+id/imageButton4"
+        android:layout_alignLeft="@+id/imageButton4"
+        android:layout_marginTop="30dp"
+        android:padding="10dp"
+        android:contentDescription="@string/hello"
+        android:src="@drawable/shelf" />
+    
+     <TextView
+        android:layout_below="@+id/imageButton5"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="Randomz"
+        android:layout_alignRight="@+id/imageButton5"/>
+     
+     <ImageButton
+        android:id="@+id/imageButton6"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_toRightOf="@+id/imageButton5"
+        android:layout_alignTop="@+id/imageButton5"
+        android:padding="3dp"
+        android:cropToPadding="true"
+        android:contentDescription="@string/hello"
+        android:src="@drawable/logo" />
+    
+     <TextView
+        android:layout_below="@+id/imageButton6"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="ClossitUser"
+        android:layout_alignRight="@+id/imageButton6"/>
 
-    <Space
-        android:layout_width="21dp"
-        android:layout_height="1dp"
-        android:layout_column="0"
-        android:layout_row="0" />
-
-    <Space
-        android:layout_width="106dp"
-        android:layout_height="1dp"
-        android:layout_column="1"
-        android:layout_row="0" />
-
-    <Space
-        android:layout_width="1dp"
-        android:layout_height="76dp"
-        android:layout_column="0"
-        android:layout_gravity="fill_horizontal"
-        android:layout_row="0" />
-
-</GridLayout>
+</RelativeLayout>

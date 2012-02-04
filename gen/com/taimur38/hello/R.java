@@ -11,19 +11,27 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int clossitlogo=0x7f020000;
-        public static final int follow=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
-        public static final int logo=0x7f020003;
-        public static final int shelf=0x7f020004;
-        public static final int unfollow=0x7f020005;
+        public static final int blueheader=0x7f020000;
+        public static final int clossitlogo=0x7f020001;
+        public static final int clossitlogo_web=0x7f020002;
+        public static final int dress=0x7f020003;
+        public static final int follow=0x7f020004;
+        public static final int header=0x7f020005;
+        public static final int ic_launcher=0x7f020006;
+        public static final int logo=0x7f020007;
+        public static final int shelf=0x7f020008;
+        public static final int t_shirt=0x7f020009;
+        public static final int unfollow=0x7f02000a;
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f050000;
         public static final int descLabel=0x7f050002;
-        public static final int gridlayout=0x7f050003;
-        public static final int imageButton1=0x7f050004;
-        public static final int imageButton2=0x7f050005;
+        public static final int imageButton1=0x7f050003;
+        public static final int imageButton2=0x7f050006;
+        public static final int imageButton3=0x7f050005;
+        public static final int imageButton4=0x7f050004;
+        public static final int imageButton5=0x7f050007;
+        public static final int imageButton6=0x7f050008;
         public static final int nameLabel=0x7f050001;
     }
     public static final class layout {

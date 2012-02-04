@@ -1,15 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
+ 
 <RelativeLayout android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
-    android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <TextView
+    android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">  
+	<RelativeLayout 
+    	android:layout_width="match_parent"
+    	android:layout_height="50dp"
+    	android:background="@drawable/blueheader">
+    	<ImageView 
+        	android:src="@drawable/clossitlogo_web"
+        	android:layout_width="wrap_content"
+        	android:layout_height="match_parent"
+        	android:layout_alignParentLeft="true"
+        	android:paddingLeft="5dp"
+        	android:contentDescription="@string/app_name"
+        	android:layout_alignParentBottom="true"> 
+    	</ImageView>
+    	
+    	<SearchView
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:layout_marginRight="3dp"
+    	    android:layout_marginLeft="170dp"
+    	    android:layout_marginTop="2dp"/>
+    
+	</RelativeLayout> 
+<TextView
         android:id="@+id/nameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginBottom="240dp"
+        android:paddingLeft="10dp"
+        android:layout_marginBottom="210dp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 
@@ -20,8 +43,9 @@
         android:layout_height="200dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
+        android:paddingLeft="10dp"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:layout_marginRight="41dp" />
     
     </RelativeLayout>
