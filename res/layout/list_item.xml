@@ -29,6 +29,6 @@
         android:layout_alignBottom="@+id/listviewPic"
         android:layout_marginTop="15dp"
         android:background="#00000000"/>
-    
+
 
 </RelativeLayout>

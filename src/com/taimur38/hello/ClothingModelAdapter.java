@@ -3,6 +3,7 @@ package com.taimur38.hello;
 import java.util.List;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +32,8 @@ public class ClothingModelAdapter extends ArrayAdapter<ClothingModel> {
 			holder.title = (TextView) convertView.findViewById(R.id.listviewTitle);
 			holder.title.setTextColor(Color.BLACK);
 			holder.pic = (ImageView) convertView.findViewById(R.id.listviewPic);
+			holder.position = position;
+			
 			
 			convertView.setTag(holder);
 		}
@@ -41,6 +44,17 @@ public class ClothingModelAdapter extends ArrayAdapter<ClothingModel> {
 		holder.pic.setImageResource(R.drawable.dress);
 		ImageDownloader.download(a.getClothing().Image(), holder.pic);
 		
+		convertView.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				Intent intent = new Intent(v.getContext(), com.taimur38.hello.HelloActivity.class);
+				ListViewHolder hold = (ListViewHolder)v.getTag();
+				intent.putExtra("position", hold.position-1);
+				v.getContext().startActivity(intent);
+				
+			}
+		});
+		
 		return convertView;
 	}
 	
@@ -49,6 +63,7 @@ public class ClothingModelAdapter extends ArrayAdapter<ClothingModel> {
 	{
 		TextView title;
 		ImageView pic;
+		int position;
 	}
 }
 

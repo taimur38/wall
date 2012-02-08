@@ -3,12 +3,8 @@ package com.taimur38.hello;
 import org.json.JSONArray;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -57,17 +53,6 @@ public class MainPage extends Activity {
 	{
 		ListView lv = (ListView)findViewById(R.id.listView);
 		lv.setAdapter(new ClothingModelAdapter(this, R.id.listviewTitle, ClothingListHolder.list));
-		
-		lv.setOnItemClickListener(new OnItemClickListener() {
-
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) 
-			{
-				Intent intent = new Intent(view.getContext(), com.taimur38.hello.HelloActivity.class);
-				intent.putExtra("position", position);
-				startActivity(intent);
-			}
-			
-		});
 	}
 
 }
