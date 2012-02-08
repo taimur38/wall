@@ -30,5 +30,10 @@ public class ClothingModel {
 	{
 		return wearing;
 	}
+	
+	public String toString()
+	{
+		return getClothing().Name();
+	}
 
 }

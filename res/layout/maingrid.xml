@@ -7,7 +7,8 @@
     <RelativeLayout 
     	android:layout_width="match_parent"
     	android:layout_height="50dp"
-    	android:background="@drawable/blueheader">
+    	android:background="@drawable/blueheader"
+    	android:id="@+id/headerLayout">
     	<ImageView 
         	android:src="@drawable/clossitlogo_web"
         	android:layout_width="wrap_content"
@@ -26,116 +27,52 @@
     	    android:layout_marginTop="2dp"/>
     </RelativeLayout>
 
-    <ImageButton
-        android:id="@+id/imageButton1"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginLeft="55dp"
-        android:layout_marginTop="60dp"
-        android:padding="3dp"
-        android:cropToPadding="true"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/logo" />
-    <TextView
-        android:layout_below="@+id/imageButton1"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:text="Clossit"
-        android:layout_alignRight="@+id/imageButton1">
-        
-    </TextView>
-
-    <ImageButton
-        android:id="@+id/imageButton4"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_below="@+id/imageButton1"
-        android:layout_marginTop="30dp"
-        android:layout_alignLeft="@+id/imageButton1"
-        android:padding="10dp"
-        android:cropToPadding="true"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/dress" />
-     <TextView
-        android:layout_below="@+id/imageButton4"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:text="Dresses"
-        android:layout_alignRight="@+id/imageButton4">
-        
-    </TextView>
-
-    <ImageButton
-        android:id="@+id/imageButton3"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="30dp"
-      	android:layout_below="@+id/imageButton2"
-      	android:layout_alignLeft="@+id/imageButton2"
-      	android:padding="10dp"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/t_shirt" />
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/headerLayout"
+        android:id="@+id/userInfoLayout">
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/userImage"
+            android:src="@drawable/logo"/>
+            
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/userImage"
+            android:layout_marginLeft="80dp"
+            android:layout_alignTop="@+id/userImage"
+            android:id="@+id/usernameLabel"
+            android:text="User Name"/>
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/usernameLabel"
+            android:layout_marginTop="10dp"
+            android:layout_alignLeft="@+id/usernameLabel"
+            android:text="Information on the user. blah blah blah."/>
+    </RelativeLayout>
     
-     <TextView
-        android:layout_below="@+id/imageButton3"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:text="T-Shirts"
-        android:layout_alignRight="@+id/imageButton3">
-        
-    </TextView>
-
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_toRightOf="@+id/imageButton1"
-        android:layout_alignTop="@+id/imageButton1"
-        android:padding="10dp"
-        android:contentDescription="@string/hello"
-        android:src="@drawable/shelf" />
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/userInfoLayout"
+        android:id="@+id/tabsLayout"
+        android:background="@drawable/bg_linen">
+    </RelativeLayout>
     
-     <TextView
-        android:layout_below="@+id/imageButton2"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:text="Suggestions"
-        android:layout_alignRight="@+id/imageButton2"/>
-     
-     <ImageButton
-        android:id="@+id/imageButton5"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_below="@+id/imageButton4"
-        android:layout_alignLeft="@+id/imageButton4"
-        android:layout_marginTop="30dp"
-        android:padding="10dp"
-        android:contentDescription="@string/hello"
-        android:src="@drawable/shelf" />
-    
-     <TextView
-        android:layout_below="@+id/imageButton5"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:text="Randomz"
-        android:layout_alignRight="@+id/imageButton5"/>
-     
-     <ImageButton
-        android:id="@+id/imageButton6"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_toRightOf="@+id/imageButton5"
-        android:layout_alignTop="@+id/imageButton5"
-        android:padding="3dp"
-        android:cropToPadding="true"
-        android:contentDescription="@string/hello"
-        android:src="@drawable/logo" />
-    
-     <TextView
-        android:layout_below="@+id/imageButton6"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:text="ClossitUser"
-        android:layout_alignRight="@+id/imageButton6"/>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/fabric"
+        android:layout_below="@+id/tabsLayout"
+        android:id="@+id/listView">
+    </ListView>/
 
 </RelativeLayout>

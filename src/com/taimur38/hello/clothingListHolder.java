@@ -24,9 +24,16 @@ public class ClothingListHolder {
 		return position;
 	}
 	
+	public static void setPosition(int i)
+	{
+		position = i;
+	}
+	
 	public static ClothingModel index(int i)
 	{
-		return list.get(i);
+		if(i < list.size())
+			return list.get(i);
+		return null;
 	}
 	
 	public static ClothingModel next()

@@ -24,28 +24,32 @@
     	    android:layout_marginLeft="170dp"
     	    android:layout_marginTop="2dp"/>
     
-	</RelativeLayout> 
+	</RelativeLayout>
+ 
 <TextView
         android:id="@+id/nameLabel"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_height="40dp"
+        android:layout_above="@+id/descLabel"
         android:layout_alignParentLeft="true"
+        android:singleLine="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
         android:paddingLeft="10dp"
-        android:layout_marginBottom="210dp"
+        android:background="@drawable/bg_linen"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
-
 
     <TextView
         android:id="@+id/descLabel"
-        android:layout_width="100dp"
-        android:layout_height="200dp"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@drawable/fabric"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:paddingLeft="10dp"
+        android:textColor="#000"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="5dp"
-        android:layout_marginRight="41dp" />
+        android:layout_marginBottom="0dp"
+        android:layout_marginRight="0dp" />
     
     </RelativeLayout>

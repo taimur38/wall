@@ -1,7 +1,5 @@
 package com.taimur38.hello;
 
-import org.json.JSONArray;
-
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
@@ -30,38 +28,19 @@ public class HelloActivity extends Activity {
     protected void onResume()
     {
     	super.onResume();
-    	ClothingListHolder.clear();
-    	download();
+    	buildPage();
     }
     
-    public void download()
-    {
-        String url = super.getIntent().getStringExtra("url");
-        String json = PageDownloader.fakeAsync(url);
-        
-        JSONArray clossit;
-        try
-        {   clossit = new JSONArray(json);}
-        
-        catch(Exception e)
-        {	clossit = null; }
-        
-        for(int i = 0; i < clossit.length(); i++)
-        {
-        	try{
-        		ClothingModel a = new ClothingModel(clossit.getJSONObject(i));
-        		ClothingListHolder.addToList(a); //change to clothingmodel holder
-        		if(i == 1) ImageDownloader.download(Session.getClothingItem(a.clothingID).Image(), null);} //cache first image
-        	catch(Exception e){}
-        }
-        buildPage();
-    }
+   
     public void buildPage() //init with clothing model
     {
     	RelativeLayout layout = (RelativeLayout)this.findViewById(R.id.RelativeLayout1);
         TextView nameLabel = (TextView)this.findViewById(R.id.nameLabel);
         TextView descLabel = (TextView)this.findViewById(R.id.descLabel);
         descLabel.setMovementMethod(new ScrollingMovementMethod());
+        nameLabel.setMovementMethod(new ScrollingMovementMethod());
+        
+        ClothingListHolder.setPosition(super.getIntent().getIntExtra("position", 0));
         
         ImageView test = new ImageView(this);
         test.setId(1337);
@@ -71,7 +50,7 @@ public class HelloActivity extends Activity {
         FlingyOnClick flingy = new FlingyOnClick();
         
 		layout.setOnClickListener(flingy);
-		layout.setOnTouchListener(flingy.gestureListener);		
+		layout.setOnTouchListener(flingy.gestureListener);
 		
 		ClothingModel current = ClothingListHolder.next();
 		ImageDownloader.download(current.getClothing().Image(), test);
@@ -79,9 +58,10 @@ public class HelloActivity extends Activity {
 		descLabel.setText(current.getClothing().Description());
 		layout.addView(test);
 		
-		//start caching next 5 images
-		for(int i = ClothingListHolder.getPosition(); i < 5; i++)
-			ImageDownloader.download(ClothingListHolder.index(i).getClothing().Image(), null);
+		//start caching next image
+		ClothingModel tmp = ClothingListHolder.index(ClothingListHolder.getPosition()+1);
+		if(tmp != null) ImageDownloader.download(tmp.getClothing().Image(), null);
+		
 		
 		ImageButton addToClossitButton = new ImageButton(this);
 		addToClossitButton.setX(600);
