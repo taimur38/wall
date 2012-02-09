@@ -38,7 +38,7 @@ public class Clothing {
 	
 	public String Image()
 	{
-		return "http://clossit.com/api/Thumbnail.aspx?width=300&height=500&src=" + json.optString("image");
+		return "http://clossit.com/Global/Thumbnail/?w=300&h=500&src=" + json.optString("image");
 	}
 	
 	public String Description()

@@ -31,9 +31,7 @@ public class ClothingModelAdapter extends ArrayAdapter<ClothingModel> {
 			holder = new ListViewHolder();
 			holder.title = (TextView) convertView.findViewById(R.id.listviewTitle);
 			holder.title.setTextColor(Color.BLACK);
-			holder.pic = (ImageView) convertView.findViewById(R.id.listviewPic);
-			holder.position = position;
-			
+			holder.pic = (ImageView) convertView.findViewById(R.id.listviewPic);			
 			
 			convertView.setTag(holder);
 		}
@@ -42,6 +40,7 @@ public class ClothingModelAdapter extends ArrayAdapter<ClothingModel> {
 		
 		holder.title.setText(a.getClothing().Name());
 		holder.pic.setImageResource(R.drawable.dress);
+		holder.position=position;
 		ImageDownloader.download(a.getClothing().Image(), holder.pic);
 		
 		convertView.setOnClickListener(new View.OnClickListener() {

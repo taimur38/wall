@@ -16,13 +16,12 @@ import android.widget.TextView;
 public class HelloActivity extends Activity {
     /** Called when the activity is first created. */
 	final Context me = this;
-	
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.main);
-        
+        setContentView(R.layout.main);        
     }
     @Override
     protected void onResume()

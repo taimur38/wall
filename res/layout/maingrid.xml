@@ -59,20 +59,20 @@
             android:text="Information on the user. blah blah blah."/>
     </RelativeLayout>
     
-    <RelativeLayout 
+    <android.support.v4.view.ViewPager 
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_below="@+id/userInfoLayout"
         android:id="@+id/tabsLayout"
         android:background="@drawable/bg_linen">
-    </RelativeLayout>
+    </android.support.v4.view.ViewPager>
     
-    <ListView
+     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/fabric"
         android:layout_below="@+id/tabsLayout"
         android:id="@+id/listView">
-    </ListView>/
+    </ListView>
 
 </RelativeLayout>

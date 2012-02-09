@@ -4,11 +4,15 @@ import org.json.JSONArray;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.view.Window;
 import android.widget.ListView;
 import android.widget.TextView;
 
 public class MainPage extends Activity {
+	
+	ViewPager viewpage;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -22,21 +26,13 @@ public class MainPage extends Activity {
 	{
 		super.onResume();
 		TextView label = (TextView)findViewById(R.id.usernameLabel);
-		label.setText(Session.getUser().Name());
+		label.setText(Session.getUser().Name()); 
 		download();
 	}
 	
 	public void download()
 	{
-        String url = "http://clossit.com/api/User.aspx?id=1&q=Suggestions&results=20&key=" + Session.getUser().getAPIKey();
-        String json = PageDownloader.fakeAsync(url);
-        
-        JSONArray clossit;
-        try
-        {   clossit = new JSONArray(json);}
-        
-        catch(Exception e)
-        {	clossit = null; }
+        JSONArray clossit = APICall.getClossit(0, 24);
         
         for(int i = 0; i < clossit.length(); i++)
         {
