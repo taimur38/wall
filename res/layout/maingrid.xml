@@ -39,6 +39,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="10dp"
+            android:contentDescription="@string/app_name"
             android:id="@+id/userImage"
             android:src="@drawable/logo"/>
             
@@ -49,14 +50,14 @@
             android:layout_marginLeft="80dp"
             android:layout_alignTop="@+id/userImage"
             android:id="@+id/usernameLabel"
-            android:text="User Name"/>
+            android:contentDescription="@string/app_name"/>
         <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/usernameLabel"
             android:layout_marginTop="10dp"
             android:layout_alignLeft="@+id/usernameLabel"
-            android:text="Information on the user. blah blah blah."/>
+            android:text="@string/default_desc"/>
     </RelativeLayout>
     
     <android.support.v4.view.ViewPager 

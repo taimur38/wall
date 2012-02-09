@@ -39,7 +39,7 @@ public class Query
 		return _root + "Following/" + Session.getUser().apiKey + "/" + page + "/" + results;
 	}
 	
-	static String wear(String id)
+	static String wear(int id)
 	{
 		return _root + "Wear/" + Session.getUser().apiKey + "/" + id;
 	}

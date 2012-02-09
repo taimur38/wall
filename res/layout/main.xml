@@ -25,7 +25,14 @@
     	    android:layout_marginTop="2dp"/>
     
 	</RelativeLayout>
- 
+ <ImageView 
+     android:id="@+id/clothPic"
+     android:layout_width="175dp"
+     android:layout_height="250dp"
+     android:layout_below="@+id/RelativeLayout1"
+     android:layout_alignParentLeft="true"
+     android:layout_marginTop="60dp"
+     android:paddingLeft="10dp"/>	
 <TextView
         android:id="@+id/nameLabel"
         android:layout_width="wrap_content"

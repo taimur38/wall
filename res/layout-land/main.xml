@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+ 
+<RelativeLayout android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">  
+	<RelativeLayout 
+    	android:layout_width="match_parent"
+    	android:layout_height="50dp"
+    	android:background="@drawable/blueheader">
+    	<ImageView 
+        	android:src="@drawable/clossitlogo_web"
+        	android:layout_width="wrap_content"
+        	android:layout_height="match_parent"
+        	android:layout_alignParentLeft="true"
+        	android:paddingLeft="5dp"
+        	android:contentDescription="@string/app_name"
+        	android:layout_alignParentBottom="true"> 
+    	</ImageView>
+    	
+    	<SearchView
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:layout_marginRight="3dp"
+    	    android:layout_marginLeft="170dp"
+    	    android:layout_marginTop="2dp"/>
+    
+	</RelativeLayout>
+	
+ <ImageView 
+     android:id="@+id/clothPic"
+     android:layout_width="175dp"
+     android:layout_height="match_parent"
+     android:layout_below="@+id/RelativeLayout1"
+     android:layout_alignParentLeft="true"
+     android:layout_marginTop="50dp"
+     android:paddingLeft="0dp"/>	
+     
+<TextView
+        android:id="@+id/nameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_above="@+id/descLabel"
+        android:layout_toRightOf="@+id/clothPic"
+        android:singleLine="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:paddingLeft="10dp"
+        android:background="@drawable/bg_linen"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/descLabel"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@drawable/fabric"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/nameLabel"
+        android:paddingLeft="10dp"
+        android:textColor="#000"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="0dp"
+        android:layout_marginRight="0dp" />
+    
+    </RelativeLayout>

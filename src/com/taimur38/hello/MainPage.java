@@ -26,7 +26,8 @@ public class MainPage extends Activity {
 	{
 		super.onResume();
 		TextView label = (TextView)findViewById(R.id.usernameLabel);
-		label.setText(Session.getUser().Name()); 
+		label.setText(Session.getUser().Name());
+		ClothingListHolder.clear();
 		download();
 	}
 	

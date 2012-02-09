@@ -33,7 +33,7 @@ public class APICall
 		return clossit;
 	}
 	
-	static JSONArray getsuggestions(int page, int results)
+	static JSONArray getSuggestions(int page, int results)
 	{
 		String json = PageDownloader.fakeAsync(Query.suggestions(page, results));
 		
@@ -89,7 +89,7 @@ public class APICall
 		return res;
 	}
 	
-	static boolean wear(String id)
+	static boolean wear(int id)
 	{
 		String json = PageDownloader.fakeAsync(Query.wear(id));
 		

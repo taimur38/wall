@@ -3,5 +3,6 @@
 
     <string name="hello">Hello World, HelloActivity!</string>
     <string name="app_name">Clossit</string>
+    <string name="default_desc">Default Description. Blah blah bah humbug.</string>
 
 </resources>

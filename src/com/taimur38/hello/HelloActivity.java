@@ -2,6 +2,7 @@ package com.taimur38.hello;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -41,10 +42,7 @@ public class HelloActivity extends Activity {
         
         ClothingListHolder.setPosition(super.getIntent().getIntExtra("position", 0));
         
-        ImageView test = new ImageView(this);
-        test.setId(1337);
-        test.setX(20);
-        test.setY(110);
+        ImageView test = (ImageView)findViewById(R.id.clothPic);
        
         FlingyOnClick flingy = new FlingyOnClick();
         
@@ -55,16 +53,26 @@ public class HelloActivity extends Activity {
 		ImageDownloader.download(current.getClothing().Image(), test);
 		nameLabel.setText(current.getClothing().Name());
 		descLabel.setText(current.getClothing().Description());
-		layout.addView(test);
-		
+			
 		//start caching next image
-		ClothingModel tmp = ClothingListHolder.index(ClothingListHolder.getPosition()+1);
+		ClothingModel tmp = ClothingListHolder.index(ClothingListHolder.getPosition() + 1);
 		if(tmp != null) ImageDownloader.download(tmp.getClothing().Image(), null);
 		
 		
 		ImageButton addToClossitButton = new ImageButton(this);
-		addToClossitButton.setX(600);
-		addToClossitButton.setY(555);
+		
+		getResources().getConfiguration();
+		if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
+		{
+			addToClossitButton.setX(600);
+			addToClossitButton.setY(555);
+		}
+		else
+		{
+			addToClossitButton.setX(1000);
+			addToClossitButton.setY(160);
+		}
+		
 		addToClossitButton.setBackgroundColor(Color.TRANSPARENT);
 		if(current.isWearing())
 			addToClossitButton.setImageResource(R.drawable.unfollow);
@@ -77,11 +85,11 @@ public class HelloActivity extends Activity {
 			public void onClick(View v) {
 				ImageButton adder = ((ImageButton)findViewById(555));
 				
-				boolean res = Session.addToClossit();
-				if(res)
-					adder.setImageResource(R.drawable.unfollow);
+				ClothingListHolder.current().wearing = APICall.wear(ClothingListHolder.getPosition());
+				if(ClothingListHolder.current().wearing)
+					adder.setImageResource(R.drawable.follow);
 				else
-					adder.setImageResource(R.drawable.follow);}});
+					adder.setImageResource(R.drawable.unfollow);}});
 		
 		
 		layout.addView(addToClossitButton);
@@ -95,7 +103,7 @@ public class HelloActivity extends Activity {
 			
 			public void onClick(View v) {
 				ClothingModel next = ClothingListHolder.next();
-				ImageDownloader.download(next.getClothing().Image(), (ImageView)findViewById(1337));
+				ImageDownloader.download(next.getClothing().Image(), (ImageView)findViewById(R.id.clothPic));
 				
 				 TextView nameLabel = (TextView)findViewById(R.id.nameLabel);
 			     TextView descLabel = (TextView)findViewById(R.id.descLabel);

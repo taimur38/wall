@@ -47,19 +47,5 @@ public class Session {
 			return new BigInteger(1,m.digest()).toString(16);}
 		catch(Exception e){return null;}
 	}
-	
-	static boolean addToClossit()
-	{
-		String url = "http://www.clossit.com/api/User.aspx?q=wear&clothing=" 
-				+ ClothingListHolder.current().getClothing().ID() + "&key=" + Session.getUser().getAPIKey();
-		
-		ClothingListHolder.current().wearing = !ClothingListHolder.current().wearing;
-		
-		String result = PageDownloader.fakeAsync(url);
-		if(result.contains("true"))
-			return true;
-		else
-			return false;
-	}
 
 }

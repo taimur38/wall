@@ -6,9 +6,10 @@
     <ImageView 
         android:src="@drawable/dress"
         android:layout_height="120dp"
-        android:layout_width="100dp"
+        android:layout_width="110dp"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="10dp"
+        android:contentDescription="@string/app_name"
         android:id="@+id/listviewPic"/>
     <TextView
         android:layout_height="wrap_content"
@@ -18,13 +19,13 @@
         android:layout_alignTop="@+id/listviewPic"
         android:layout_marginTop="15dp"
         android:textSize="8pt"
-        android:text="Dress"
         android:layout_marginLeft="50dp"/>
     <ImageButton
         android:src="@drawable/follow"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_marginBottom="10dp"
+        android:contentDescription="@string/app_name"
         android:layout_alignLeft="@+id/listviewTitle"
         android:layout_alignBottom="@+id/listviewPic"
         android:layout_marginTop="15dp"
