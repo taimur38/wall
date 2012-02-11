@@ -27,23 +27,25 @@ public final class R {
         public static final int unfollow=0x7f02000d;
     }
     public static final class id {
-        public static final int RelativeLayout1=0x7f050002;
-        public static final int clothPic=0x7f050003;
-        public static final int descLabel=0x7f050005;
-        public static final int headerLayout=0x7f050006;
-        public static final int listView=0x7f05000b;
-        public static final int listviewPic=0x7f050000;
-        public static final int listviewTitle=0x7f050001;
-        public static final int nameLabel=0x7f050004;
-        public static final int tabsLayout=0x7f05000a;
-        public static final int userImage=0x7f050008;
-        public static final int userInfoLayout=0x7f050007;
-        public static final int usernameLabel=0x7f050009;
+        public static final int RelativeLayout1=0x7f050003;
+        public static final int clothPic=0x7f050004;
+        public static final int descLabel=0x7f050006;
+        public static final int headerLayout=0x7f050007;
+        public static final int listview=0x7f050000;
+        public static final int listviewPic=0x7f050001;
+        public static final int listviewTitle=0x7f050002;
+        public static final int nameLabel=0x7f050005;
+        public static final int titlestrip=0x7f05000c;
+        public static final int userImage=0x7f050009;
+        public static final int userInfoLayout=0x7f050008;
+        public static final int usernameLabel=0x7f05000a;
+        public static final int viewpager=0x7f05000b;
     }
     public static final class layout {
-        public static final int list_item=0x7f030000;
-        public static final int main=0x7f030001;
-        public static final int maingrid=0x7f030002;
+        public static final int contentlistview=0x7f030000;
+        public static final int list_item=0x7f030001;
+        public static final int main=0x7f030002;
+        public static final int maingrid=0x7f030003;
     }
     public static final class string {
         public static final int app_name=0x7f040001;

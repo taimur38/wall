@@ -32,6 +32,7 @@
      android:layout_below="@+id/RelativeLayout1"
      android:layout_alignParentLeft="true"
      android:layout_marginTop="60dp"
+     android:contentDescription="@string/app_name"
      android:paddingLeft="10dp"/>	
 <TextView
         android:id="@+id/nameLabel"

@@ -127,7 +127,7 @@ public class HelloActivity extends Activity {
 			
 			public void onClick(View v) {
 				ClothingModel prev = ClothingListHolder.previous();
-				ImageDownloader.download(prev.getClothing().Image(), (ImageView)findViewById(1337));
+				ImageDownloader.download(prev.getClothing().Image(), (ImageView)findViewById(R.id.clothPic));
 				
 				 TextView nameLabel = (TextView)findViewById(R.id.nameLabel);
 			     TextView descLabel = (TextView)findViewById(R.id.descLabel);

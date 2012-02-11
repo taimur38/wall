@@ -59,21 +59,21 @@
             android:layout_alignLeft="@+id/usernameLabel"
             android:text="@string/default_desc"/>
     </RelativeLayout>
-    
-    <android.support.v4.view.ViewPager 
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_below="@+id/userInfoLayout"
-        android:id="@+id/tabsLayout"
-        android:background="@drawable/bg_linen">
-    </android.support.v4.view.ViewPager>
-    
-     <ListView
+
+    <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/fabric"
-        android:layout_below="@+id/tabsLayout"
-        android:id="@+id/listView">
-    </ListView>
+        android:layout_below="@+id/userInfoLayout"
+        android:id="@+id/viewpager">
+        
+        <android.support.v4.view.PagerTitleStrip
+            android:layout_gravity="top"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:padding="0dp"
+            android:id="@+id/titlestrip"/>
+        
+        </android.support.v4.view.ViewPager>
+
 
 </RelativeLayout>
