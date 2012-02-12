@@ -15,15 +15,18 @@ import android.widget.TextView;
 public class ClothingModelAdapter extends ArrayAdapter<ClothingModel> {
 
 	LayoutInflater mInflate;
+	List<ClothingModel> list;
+	
 	public ClothingModelAdapter(Context context, int textViewResourceId, List<ClothingModel> objects) 
 	{
 		super(context, textViewResourceId, objects);
 		mInflate = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		list = objects;
 	}
 	
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
-		ClothingModel a = ClothingListHolder.index(position);
+		ClothingModel a = list.get(position);
 		ListViewHolder holder;
 		if(convertView == null)
 		{
@@ -38,10 +41,10 @@ public class ClothingModelAdapter extends ArrayAdapter<ClothingModel> {
 		else
 			holder = (ListViewHolder) convertView.getTag();
 		
-		holder.title.setText(a.getClothing().Name());
+		holder.title.setText(Session.getClothingItem(list.get(position).clothingID).Name());
 		holder.pic.setImageResource(R.drawable.dress);
 		holder.position=position;
-		ImageDownloader.download(a.getClothing().Image(), holder.pic);
+		ImageDownloader.download(Session.getClothingItem(list.get(position).clothingID).Image(), holder.pic);
 		
 		convertView.setOnClickListener(new View.OnClickListener() {
 			

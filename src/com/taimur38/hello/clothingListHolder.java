@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 public class ClothingListHolder {
 
-	public static ArrayList<ClothingModel> list = null;
+	public static ArrayList<ClothingModel> list = new ArrayList<ClothingModel>();
 	private static int position = -1;
+	public static ArrayList<ClothingModel> suggestionsList = null;
 	
 	public ClothingListHolder()
 	{
