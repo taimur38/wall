@@ -35,5 +35,10 @@ public class ClothingModel {
 	{
 		return getClothing().Name();
 	}
+	
+	public boolean Equals(String id)
+	{
+		return this.clothingID.equals(id);
+	}
 
 }

@@ -41,10 +41,11 @@ public class ClothingModelAdapter extends ArrayAdapter<ClothingModel> {
 		else
 			holder = (ListViewHolder) convertView.getTag();
 		
-		holder.title.setText(Session.getClothingItem(list.get(position).clothingID).Name());
+		holder.title.setText(a.getClothing().Name());
 		holder.pic.setImageResource(R.drawable.dress);
 		holder.position=position;
-		ImageDownloader.download(Session.getClothingItem(list.get(position).clothingID).Image(), holder.pic);
+		holder.clothingID = a.clothingID;
+		ImageDownloader.download(a.getClothing().Image(), holder.pic);
 		
 		convertView.setOnClickListener(new View.OnClickListener() {
 			
@@ -52,6 +53,7 @@ public class ClothingModelAdapter extends ArrayAdapter<ClothingModel> {
 				Intent intent = new Intent(v.getContext(), com.taimur38.hello.HelloActivity.class);
 				ListViewHolder hold = (ListViewHolder)v.getTag();
 				intent.putExtra("position", hold.position-1);
+				intent.putExtra("ID", hold.clothingID);
 				v.getContext().startActivity(intent);
 				
 			}
@@ -66,6 +68,7 @@ public class ClothingModelAdapter extends ArrayAdapter<ClothingModel> {
 		TextView title;
 		ImageView pic;
 		int position;
+		String clothingID;
 	}
 }
 

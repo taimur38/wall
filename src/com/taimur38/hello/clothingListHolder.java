@@ -4,61 +4,43 @@ import java.util.ArrayList;
 
 public class ClothingListHolder {
 
-	public static ArrayList<ClothingModel> list = new ArrayList<ClothingModel>();
-	private static int position = -1;
-	public static ArrayList<ClothingModel> suggestionsList = null;
+	public ArrayList<ClothingModel> list = new ArrayList<ClothingModel>();
+	public int position = 0;
 	
 	public ClothingListHolder()
 	{
 		list = new ArrayList<ClothingModel>();
 	}
-	
-	public static void addToList(ClothingModel model)
+		
+	public void addToList(ClothingModel model)
 	{
 		if(list == null)
 			list = new ArrayList<ClothingModel>();
 		list.add(model);
 	}
 	
-	public static int getPosition()
-	{
-		return position;
-	}
-	
-	public static void setPosition(int i)
-	{
-		position = i;
-	}
-	
-	public static ClothingModel index(int i)
-	{
-		if(i < list.size())
-			return list.get(i);
-		return null;
-	}
-	
-	public static ClothingModel next()
+	public ClothingModel next()
 	{
 		if(++position >= list.size())
 			position = 0;
 		return list.get(position);
 	}
 	
-	public static ClothingModel current()
+	public ClothingModel current()
 	{
 		if(list == null)
 			return null;
 		return list.get(position);
 	}
 	
-	public static ClothingModel previous()
+	public ClothingModel previous()
 	{
 		if(--position < 0)
 			position = list.size()-1;
 		return list.get(position);
 	}
 	
-	public static void clear()
+	public void clear()
 	{
 		if(list != null)
 			list.clear();

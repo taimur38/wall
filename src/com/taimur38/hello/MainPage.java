@@ -7,8 +7,6 @@ import org.json.JSONArray;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.app.ListFragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -18,6 +16,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ListView;
 import android.widget.TextView;
+
 
 public class MainPage extends Activity {
 	
@@ -44,7 +43,8 @@ public class MainPage extends Activity {
 	protected void onResume()
 	{
 		super.onResume();		
-		ClothingListHolder.clear();
+		Session.clossit.clear();
+		Session.suggestions.clear();
 		download();
 	}
 	
@@ -55,19 +55,18 @@ public class MainPage extends Activity {
         {
         	try{
         		ClothingModel a = new ClothingModel(clossit.getJSONObject(i));
-        		ClothingListHolder.addToList(a); //change to clothingmodel holder
-        		if(i == 1) ImageDownloader.download(Session.getClothingItem(a.clothingID).Image(), null);} //cache first image
+        		Session.clossit.addToList(a);
+        		if(i == 1) ImageDownloader.download(a.getClothing().Image(), null);} //cache first image
         	catch(Exception e){}
         }
         
         JSONArray suggest = APICall.getSuggestions(0, 24);
-        ClothingListHolder.suggestionsList = new ArrayList<ClothingModel>();
         for(int i = 0; i < suggest.length(); i++)
         {
         	try{
         		ClothingModel a = new ClothingModel(suggest.getJSONObject(i));
-        		ClothingListHolder.suggestionsList.add(a); //change to clothingmodel holder
-        		if(i == 1) ImageDownloader.download(Session.getClothingItem(a.clothingID).Image(), null);} //cache first image
+        		Session.suggestions.addToList(a);
+        		if(i == 1) ImageDownloader.download(a.getClothing().Image(), null);} //cache first image
         	catch(Exception e){}
         }
 	}
@@ -125,9 +124,9 @@ public class MainPage extends Activity {
 		{
 			View v = inflater.inflate(R.layout.contentlistview, container, false);
 			if(_num == 0)
-				((ListView)v).setAdapter(new ClothingModelAdapter(getActivity(), R.id.listviewTitle, ClothingListHolder.list));
-			else
-				((ListView)v).setAdapter(new ClothingModelAdapter(getActivity(), R.id.listviewTitle, ClothingListHolder.suggestionsList));
+				((ListView)v).setAdapter(new ClothingModelAdapter(getActivity(), R.id.listviewTitle, Session.clossit.list));
+			if(_num == 1)
+				((ListView)v).setAdapter(new ClothingModelAdapter(getActivity(), R.id.listviewTitle, Session.suggestions.list));
 
 			return v;
 		}

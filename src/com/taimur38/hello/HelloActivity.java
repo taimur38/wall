@@ -40,7 +40,11 @@ public class HelloActivity extends Activity {
         descLabel.setMovementMethod(new ScrollingMovementMethod());
         nameLabel.setMovementMethod(new ScrollingMovementMethod());
         
-        ClothingListHolder.setPosition(super.getIntent().getIntExtra("position", 0));
+        ClothingListHolder list;
+
+       	list = Session.listContainingID(super.getIntent().getStringExtra("ID"));
+        
+        list.position = (super.getIntent().getIntExtra("position", 0));
         
         ImageView test = (ImageView)findViewById(R.id.clothPic);
        
@@ -49,13 +53,13 @@ public class HelloActivity extends Activity {
 		layout.setOnClickListener(flingy);
 		layout.setOnTouchListener(flingy.gestureListener);
 		
-		ClothingModel current = ClothingListHolder.next();
+		ClothingModel current = list.next();
 		ImageDownloader.download(current.getClothing().Image(), test);
 		nameLabel.setText(current.getClothing().Name());
 		descLabel.setText(current.getClothing().Description());
 			
 		//start caching next image
-		ClothingModel tmp = ClothingListHolder.index(ClothingListHolder.getPosition() + 1);
+		ClothingModel tmp = list.list.get(list.position++);
 		if(tmp != null) ImageDownloader.download(tmp.getClothing().Image(), null);
 		
 		
@@ -84,9 +88,9 @@ public class HelloActivity extends Activity {
 			
 			public void onClick(View v) {
 				ImageButton adder = ((ImageButton)findViewById(555));
-				
-				ClothingListHolder.current().wearing = APICall.wear(ClothingListHolder.getPosition());
-				if(ClothingListHolder.current().wearing)
+
+				list.current().wearing = APICall.wear(list.position);
+				if(list.current().wearing)
 					adder.setImageResource(R.drawable.follow);
 				else
 					adder.setImageResource(R.drawable.unfollow);}});
